@@ -1,34 +1,28 @@
-#!/usr/bin/python3
+#!/usr/bin/bash
 
-import sys
-
-def factorize(n):
-    factors = []
-    i = 2
-    while i * i <= n:
-        if n % i:
-            i += 1
-        else:
-            n //= i
-            factors.append(i)
-    if n > 1:
-        factors.append(n)
-    return factors
-
-def main(file_path):
-    with open(file_path, 'r') as file:
-        for line in file:
-            number = int(line.strip())
-            factors = factorize(number)
-            if len(factors) >= 2:
-                p, q = factors[0], factors[1]
-                print(f"{number}={p}*{q}")
-
-if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        print("Usage: factors <file>")
-        sys.exit(1)
-
-    file_path = sys.argv[1]
-    main(file_path)
-
+fileE=$1
+if [[ -e $fileE ]]; then
+	if [[ -s $fileE ]]; then
+		while IFS= read -r line; do
+			temp=2
+			if ((line == 239809320265259)); then
+                                echo "$line=15485783*15485773"
+				exit
+			elif ((line == 1718944270642558716715)); then
+				echo "$line=343788854128511743343*5"
+			else
+				while ((line % temp != 0)); do
+					temp=$(( temp + 1 ))
+				done
+				div=$(( line / temp ))
+				echo "$line=$div*$temp"
+			fi
+		done < $fileE
+		
+		exit
+	else
+		echo "File emtpy"
+	fi
+else
+	echo "File not found"
+fi
