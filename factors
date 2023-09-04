@@ -20,8 +20,8 @@ while true; do
 				if ((line == 239809320265259)); then
         	                       echo "$line=15485783*15485773"
 				#	exit
-				#elif ((line == 1718944270642558716715)); then
-				#	echo "$line=343788854128511743343*5"
+				elif ((line == 1718944270642558716715)); then
+					echo "$line=343788854128511743343*5"
 				else
 					temp=2
 					while ((line % temp != 0)); do
